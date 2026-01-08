@@ -1,0 +1,2106 @@
+/* Report & Analysis Page Styles */
+.report-page .main-content {
+  padding: 2rem;
+}
+
+.page-header-with-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-header-with-badge h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #f4f1eb;
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.page-header-with-badge .header-icon {
+  color: #d4a574;
+}
+
+.page-header-with-badge .subtitle {
+  color: #a09080;
+  margin: 0.25rem 0 0 0;
+  font-size: 0.95rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.refresh-btn,
+.setup-goals-btn,
+.add-goal-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.refresh-btn {
+  background: #2a2520;
+  color: #a09080;
+  padding: 0.6rem;
+}
+
+.refresh-btn:hover {
+  background: #3a3530;
+  color: #d4a574;
+}
+
+.add-goal-btn {
+  background: linear-gradient(135deg, #d4a574, #c49464);
+  color: #1a1510;
+}
+
+.add-goal-btn:hover {
+  background: linear-gradient(135deg, #e4b584, #d4a574);
+  transform: translateY(-1px);
+}
+
+.setup-goals-btn {
+  background: #2a2520;
+  color: #f4f1eb;
+  border: 1px solid #3a3530;
+}
+
+.setup-goals-btn:hover {
+  background: #3a3530;
+  border-color: #d4a574;
+}
+
+/* Tab Navigation */
+.report-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  background: #1a1510;
+  padding: 0.5rem;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: #a09080;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  background: #2a2520;
+  color: #f4f1eb;
+}
+
+.tab-btn.active {
+  background: #d4a574;
+  color: #1a1510;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  color: #a09080;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #2a2520;
+  border-top-color: #d4a574;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Goal Overview Card */
+.goal-overview-card {
+  background: linear-gradient(135deg, #2a2520 0%, #1a1510 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #3a3530;
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.goal-type-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.goal-icon {
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: #2a2520;
+}
+
+.goal-icon.loss { color: #4ade80; background: rgba(74, 222, 128, 0.1); }
+.goal-icon.gain { color: #60a5fa; background: rgba(96, 165, 250, 0.1); }
+.goal-icon.maintain { color: #d4a574; background: rgba(212, 165, 116, 0.1); }
+
+.goal-type-display h3 {
+  color: #f4f1eb;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.goal-target {
+  color: #a09080;
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.goal-eta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a09080;
+  font-size: 0.85rem;
+  background: #1a1510;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+/* Weight Progress */
+.weight-progress-section {
+  margin-top: 1rem;
+}
+
+.weight-progress-bar {
+  margin-bottom: 1rem;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.start-label { color: #a09080; }
+.current-label { color: #d4a574; font-weight: 600; }
+.target-label { color: #4ade80; }
+
+.progress-track {
+  height: 12px;
+  background: #1a1510;
+  border-radius: 6px;
+  position: relative;
+  overflow: visible;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d4a574, #4ade80);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+.progress-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: #d4a574;
+  border: 3px solid #1a1510;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.4);
+}
+
+.weight-change-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.weight-change {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.weight-change.loss { color: #4ade80; }
+.weight-change.gain { color: #60a5fa; }
+
+.since-start {
+  color: #a09080;
+  font-size: 0.85rem;
+}
+
+/* Quick Stats Row */
+.quick-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quick-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #2a2520;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid #3a3530;
+  position: relative;
+}
+
+.quick-stat-card .stat-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #1a1510;
+  color: #d4a574;
+}
+
+.quick-stat-card.calories-in .stat-icon { color: #4ade80; }
+.quick-stat-card.calories-out .stat-icon { color: #ef4444; }
+.quick-stat-card.net-calories .stat-icon { color: #f59e0b; }
+.quick-stat-card.workouts .stat-icon { color: #a855f7; }
+
+.quick-stat-card .stat-content {
+  flex: 1;
+}
+
+.quick-stat-card .stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f4f1eb;
+}
+
+.quick-stat-card .stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #a09080;
+}
+
+.quick-stat-card .trend-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #a09080;
+}
+
+.quick-stat-card .trend-icon.up { color: #4ade80; }
+.quick-stat-card .trend-icon.down { color: #ef4444; }
+
+.quick-stat-card .status-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.quick-stat-card .status-icon.success { color: #4ade80; }
+.quick-stat-card .status-icon.warning { color: #f59e0b; }
+
+/* Analysis Grid */
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.analysis-card {
+  background: #2a2520;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #3a3530;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.card-header h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f4f1eb;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.card-header h4 svg {
+  color: #d4a574;
+}
+
+.status-badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge.on-track {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+}
+
+.status-badge.off-track {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.status-badge.moderate {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+/* Calorie Balance Card */
+.calorie-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.breakdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.breakdown-bar {
+  height: 10px;
+  background: #1a1510;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.breakdown-item.consumed .bar-fill {
+  background: linear-gradient(90deg, #4ade80, #22c55e);
+  height: 100%;
+}
+
+.breakdown-item.burned .bar-fill {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.breakdown-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.breakdown-label {
+  color: #a09080;
+  font-size: 0.85rem;
+}
+
+.breakdown-value {
+  color: #f4f1eb;
+  font-weight: 600;
+}
+
+.calorie-summary {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #3a3530;
+}
+
+.calorie-summary p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #f4f1eb;
+}
+
+.calorie-summary .success { color: #4ade80; }
+.calorie-summary .warning { color: #f59e0b; }
+
+/* Hydration Card */
+.hydration-visual {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.water-bottle {
+  width: 60px;
+  height: 120px;
+  background: #1a1510;
+  border-radius: 8px 8px 20px 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #3a3530;
+}
+
+.water-level {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, #60a5fa, #3b82f6);
+  transition: height 0.5s ease;
+  border-radius: 0 0 18px 18px;
+}
+
+.water-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #f4f1eb;
+  font-weight: 700;
+  font-size: 0.85rem;
+  z-index: 1;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.hydration-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hydration-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hydration-stat .stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f4f1eb;
+}
+
+.hydration-stat .stat-label {
+  font-size: 0.75rem;
+  color: #a09080;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* BMI Card */
+.bmi-display {
+  text-align: center;
+}
+
+.bmi-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f4f1eb;
+  margin-bottom: 1rem;
+}
+
+.bmi-scale {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.scale-bar {
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.scale-segment {
+  flex: 1;
+}
+
+.scale-segment.underweight { background: #60a5fa; }
+.scale-segment.normal { background: #4ade80; }
+.scale-segment.overweight { background: #fbbf24; }
+.scale-segment.obese { background: #ef4444; }
+
+.scale-marker {
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 20px;
+  background: #f4f1eb;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: #a09080;
+}
+
+.bmi-info {
+  color: #a09080;
+  font-size: 0.85rem;
+}
+
+.bmi-info p {
+  margin: 0;
+}
+
+/* Insights Card */
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #1a1510;
+  border-radius: 10px;
+  border-left: 3px solid;
+}
+
+.insight-item.positive {
+  border-color: #4ade80;
+}
+
+.insight-item.positive .insight-icon { color: #4ade80; }
+
+.insight-item.negative {
+  border-color: #ef4444;
+}
+
+.insight-item.negative .insight-icon { color: #ef4444; }
+
+.insight-item.neutral {
+  border-color: #f59e0b;
+}
+
+.insight-item.neutral .insight-icon { color: #f59e0b; }
+
+.insight-content {
+  flex: 1;
+}
+
+.insight-title {
+  display: block;
+  font-weight: 600;
+  color: #f4f1eb;
+  margin-bottom: 0.25rem;
+}
+
+.insight-text {
+  font-size: 0.85rem;
+  color: #a09080;
+}
+
+/* Goals Tab */
+.goals-tab-content {
+  min-height: 400px;
+}
+
+.empty-goals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #a09080;
+}
+
+.empty-goals svg {
+  margin-bottom: 1rem;
+  color: #3a3530;
+}
+
+.empty-goals h3 {
+  color: #f4f1eb;
+  margin: 0 0 0.5rem;
+}
+
+.empty-goals p {
+  margin: 0 0 1.5rem;
+}
+
+.create-goal-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #d4a574, #c49464);
+  color: #1a1510;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.create-goal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+}
+
+/* Custom Goals Grid */
+.custom-goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.custom-goal-card {
+  background: #2a2520;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #3a3530;
+  border-top: 3px solid var(--goal-color, #d4a574);
+  transition: all 0.2s;
+}
+
+.custom-goal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.goal-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.goal-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.goal-title-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.goal-title-section h4 {
+  margin: 0;
+  color: #f4f1eb;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.goal-category {
+  font-size: 0.8rem;
+  color: #a09080;
+}
+
+.goal-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1510;
+  border: none;
+  border-radius: 6px;
+  color: #a09080;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  color: #d4a574;
+  background: #3a3530;
+}
+
+.action-btn.delete:hover {
+  color: #ef4444;
+}
+
+/* Goal Progress Section */
+.goal-progress-section {
+  margin-bottom: 1rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: #a09080;
+}
+
+.progress-direction {
+  color: #a09080;
+}
+
+.goal-progress-bar {
+  height: 8px;
+  background: #1a1510;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.goal-progress-bar .progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Goal Values */
+.goal-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.value-item {
+  text-align: center;
+  padding: 0.75rem;
+  background: #1a1510;
+  border-radius: 8px;
+}
+
+.value-item .value-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #a09080;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.value-item .value-number {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f4f1eb;
+}
+
+.value-item.current .value-number {
+  color: var(--goal-color, #d4a574);
+}
+
+.value-item.target .value-number {
+  color: #4ade80;
+}
+
+.value-item .value-unit {
+  display: block;
+  font-size: 0.7rem;
+  color: #a09080;
+}
+
+/* Log Progress Section */
+.log-progress-section {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.progress-input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background: #1a1510;
+  border: 1px solid #3a3530;
+  border-radius: 8px;
+  color: #f4f1eb;
+  font-size: 0.9rem;
+}
+
+.progress-input:focus {
+  outline: none;
+  border-color: #d4a574;
+}
+
+.log-btn {
+  padding: 0.6rem 1rem;
+  background: var(--goal-color, #d4a574);
+  color: #1a1510;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.log-btn:hover {
+  opacity: 0.9;
+}
+
+/* Goal Deadline */
+.goal-deadline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #a09080;
+  margin-bottom: 0.5rem;
+}
+
+/* Goal Notes */
+.goal-notes {
+  padding: 0.75rem;
+  background: #1a1510;
+  border-radius: 8px;
+  border-left: 3px solid var(--goal-color, #d4a574);
+}
+
+.goal-notes p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #a09080;
+  font-style: italic;
+}
+
+/* Add Goal Card */
+.add-goal-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  background: #1a1510;
+  border: 2px dashed #3a3530;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #a09080;
+}
+
+.add-goal-card:hover {
+  border-color: #d4a574;
+  color: #d4a574;
+  background: rgba(212, 165, 116, 0.05);
+}
+
+.add-goal-card svg {
+  margin-bottom: 0.5rem;
+}
+
+/* Analysis Tab */
+.analysis-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.analysis-section {
+  background: #2a2520;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #3a3530;
+}
+
+.analysis-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f4f1eb;
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+}
+
+.analysis-section h3 svg {
+  color: #d4a574;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.section-header h3 {
+  margin: 0;
+}
+
+.log-weight-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #1a1510;
+  border: 1px solid #3a3530;
+  border-radius: 8px;
+  color: #f4f1eb;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.log-weight-btn:hover {
+  border-color: #d4a574;
+  color: #d4a574;
+}
+
+/* Weekly Stats Grid */
+.weekly-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.weekly-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #1a1510;
+  border-radius: 12px;
+}
+
+.weekly-stat-card svg {
+  color: #d4a574;
+}
+
+.weekly-stat-card .stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.weekly-stat-card .stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f4f1eb;
+}
+
+.weekly-stat-card .stat-label {
+  font-size: 0.8rem;
+  color: #a09080;
+}
+
+/* Weight History Chart */
+.weight-history-chart {
+  padding: 1rem 0;
+}
+
+.chart-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 200px;
+  padding: 0 0.5rem;
+}
+
+.chart-bar-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.chart-bar {
+  width: 100%;
+  max-width: 40px;
+  background: linear-gradient(180deg, #d4a574, #c49464);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 20px;
+  transition: height 0.3s ease;
+}
+
+.chart-bar:hover {
+  background: linear-gradient(180deg, #e4b584, #d4a574);
+}
+
+.bar-value {
+  position: absolute;
+  top: -24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #d4a574;
+  white-space: nowrap;
+}
+
+.bar-date {
+  font-size: 0.65rem;
+  color: #a09080;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+}
+
+.empty-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  color: #a09080;
+  text-align: center;
+}
+
+.empty-history svg {
+  margin-bottom: 1rem;
+  color: #3a3530;
+}
+
+/* Macro Cards */
+.macro-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.macro-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #1a1510;
+  border-radius: 12px;
+  border-left: 3px solid;
+}
+
+.macro-card.protein {
+  border-color: #a855f7;
+}
+
+.macro-card.protein .macro-icon { color: #a855f7; }
+
+.macro-card.calories {
+  border-color: #ef4444;
+}
+
+.macro-card.calories .macro-icon { color: #ef4444; }
+
+.macro-card.water {
+  border-color: #3b82f6;
+}
+
+.macro-card.water .macro-icon { color: #3b82f6; }
+
+.macro-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.macro-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f4f1eb;
+}
+
+.macro-label {
+  font-size: 0.8rem;
+  color: #a09080;
+}
+
+/* Tips Section */
+.tips-section .tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #1a1510;
+  border-radius: 10px;
+}
+
+.tip-item svg {
+  color: #f59e0b;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tip-item.success svg {
+  color: #4ade80;
+}
+
+.tip-item p {
+  margin: 0;
+  color: #a09080;
+  font-size: 0.9rem;
+}
+
+/* Quick Actions Section */
+.quick-actions-section {
+  margin-top: 1.5rem;
+}
+
+.quick-actions-section h3 {
+  color: #f4f1eb;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.quick-action-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #2a2520;
+  border: 1px solid #3a3530;
+  border-radius: 12px;
+  color: #f4f1eb;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quick-action-card:hover {
+  background: #3a3530;
+  border-color: #d4a574;
+  transform: translateX(4px);
+}
+
+.quick-action-card svg:first-child {
+  color: #d4a574;
+}
+
+.quick-action-card span {
+  flex: 1;
+  font-weight: 500;
+}
+
+.quick-action-card svg:last-child {
+  color: #a09080;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.goal-setup-modal,
+.custom-goal-modal {
+  background: #2a2520;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid #3a3530;
+}
+
+.custom-goal-modal {
+  max-width: 600px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #3a3530;
+  position: sticky;
+  top: 0;
+  background: #2a2520;
+  z-index: 1;
+}
+
+.modal-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: #f4f1eb;
+  font-size: 1.1rem;
+}
+
+.modal-header h3 svg {
+  color: #d4a574;
+}
+
+.close-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1510;
+  border: none;
+  border-radius: 8px;
+  color: #a09080;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  color: #f4f1eb;
+  background: #3a3530;
+}
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+/* Goal Type Selector */
+.goal-type-selector {
+  margin-bottom: 1.5rem;
+}
+
+.goal-type-selector label {
+  display: block;
+  color: #f4f1eb;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.goal-type-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.goal-type-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #1a1510;
+  border: 2px solid #3a3530;
+  border-radius: 12px;
+  color: #a09080;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.goal-type-btn:hover {
+  border-color: #d4a574;
+  color: #f4f1eb;
+}
+
+.goal-type-btn.active {
+  border-color: #d4a574;
+  background: rgba(212, 165, 116, 0.1);
+  color: #d4a574;
+}
+
+/* Goal Input Groups */
+.goal-input-group {
+  margin-bottom: 1.25rem;
+}
+
+.goal-input-group label {
+  display: block;
+  color: #f4f1eb;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.goal-input-group input,
+.goal-input-group select,
+.goal-input-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #1a1510;
+  border: 1px solid #3a3530;
+  border-radius: 8px;
+  color: #f4f1eb;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.goal-input-group input:focus,
+.goal-input-group select:focus,
+.goal-input-group textarea:focus {
+  outline: none;
+  border-color: #d4a574;
+}
+
+.goal-input-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.input-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: #a09080;
+  margin-top: 0.35rem;
+}
+
+.goal-input-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.goal-input-row .goal-input-group {
+  margin-bottom: 0;
+}
+
+/* Value Input Wrapper */
+.value-input-wrapper {
+  position: relative;
+}
+
+.value-input-wrapper input {
+  padding-right: 60px;
+}
+
+.value-input-wrapper .unit {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a09080;
+  font-size: 0.85rem;
+}
+
+/* Goal Category Grid */
+.goal-category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.category-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  background: #1a1510;
+  border: 1px solid #3a3530;
+  border-radius: 20px;
+  color: #a09080;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-chip:hover {
+  border-color: var(--chip-color);
+  color: var(--chip-color);
+}
+
+.category-chip.active {
+  background: var(--chip-color);
+  border-color: var(--chip-color);
+  color: #1a1510;
+}
+
+/* Direction Buttons */
+.direction-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.direction-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #1a1510;
+  border: 2px solid #3a3530;
+  border-radius: 8px;
+  color: #a09080;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.direction-btn:hover {
+  border-color: #a09080;
+}
+
+.direction-btn.active.increase {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+}
+
+.direction-btn.active.decrease {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.direction-btn.active.maintain {
+  border-color: #d4a574;
+  background: rgba(212, 165, 116, 0.1);
+  color: #d4a574;
+}
+
+/* Frequency Buttons */
+.frequency-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.frequency-btn {
+  padding: 0.6rem 1rem;
+  background: #1a1510;
+  border: 1px solid #3a3530;
+  border-radius: 8px;
+  color: #a09080;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.frequency-btn:hover {
+  border-color: #d4a574;
+}
+
+.frequency-btn.active {
+  background: #d4a574;
+  border-color: #d4a574;
+  color: #1a1510;
+}
+
+/* Color Picker */
+.color-picker {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.active {
+  border-color: #f4f1eb;
+  box-shadow: 0 0 0 2px #1a1510;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #3a3530;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: #1a1510;
+  border: 1px solid #3a3530;
+  border-radius: 8px;
+  color: #a09080;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #3a3530;
+  color: #f4f1eb;
+}
+
+.save-goals-btn {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #d4a574, #c49464);
+  border: none;
+  border-radius: 8px;
+  color: #1a1510;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.save-goals-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e4b584, #d4a574);
+  transform: translateY(-1px);
+}
+
+.save-goals-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Metric Select */
+.metric-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a09080' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.metric-select option {
+  background: #1a1510;
+  color: #f4f1eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .report-page .main-content {
+    padding: 1rem;
+  }
+
+  .page-header-with-badge {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .header-actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .report-tabs {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .report-tab {
+    flex: 1;
+    min-width: 80px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    justify-content: center;
+  }
+
+  .quick-stats-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .quick-stat-card {
+    padding: 14px;
+  }
+  
+  .quick-stat-card .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .goal-overview-card {
+    padding: 16px;
+  }
+  
+  .goal-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .goal-eta {
+    margin-left: 0;
+  }
+  
+  .weight-progress-section .progress-labels {
+    font-size: 0.7rem;
+  }
+
+  .analysis-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .analysis-card {
+    padding: 16px;
+  }
+  
+  .calorie-breakdown {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .breakdown-item {
+    width: 100%;
+  }
+
+  .goal-type-buttons,
+  .direction-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .goal-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-goals-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .custom-goal-card {
+    padding: 16px;
+  }
+
+  .chart-container {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .chart-bar-wrapper {
+    min-width: 40px;
+  }
+  
+  /* Comparison section mobile */
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-card {
+    padding: 12px;
+  }
+  
+  .comparison-details {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .comparison-vs {
+    display: none;
+  }
+  
+  .fit-stat-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .fit-stat {
+    padding: 12px;
+  }
+  
+  .fit-averages {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Modal responsive */
+  .goal-setup-modal,
+  .custom-goal-modal {
+    max-width: 100%;
+    max-height: 90vh;
+    margin: 16px;
+  }
+  
+  .modal-content {
+    padding: 16px;
+  }
+}
+
+/* Scrollbar Styles */
+.goal-setup-modal::-webkit-scrollbar,
+.custom-goal-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.goal-setup-modal::-webkit-scrollbar-track,
+.custom-goal-modal::-webkit-scrollbar-track {
+  background: #1a1510;
+}
+
+.goal-setup-modal::-webkit-scrollbar-thumb,
+.custom-goal-modal::-webkit-scrollbar-thumb {
+  background: #3a3530;
+  border-radius: 3px;
+}
+
+.goal-setup-modal::-webkit-scrollbar-thumb:hover,
+.custom-goal-modal::-webkit-scrollbar-thumb:hover {
+  background: #d4a574;
+}
+
+/* Google Fit Card Styles */
+.google-fit-card {
+  background: linear-gradient(135deg, #1a1510 0%, #252015 100%);
+}
+
+.google-fit-card .status-badge.connected {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.google-fit-card .status-badge.disconnected {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.google-fit-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fit-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.fit-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(212, 165, 116, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+.fit-stat .fit-label {
+  font-size: 0.75rem;
+  color: #a09080;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fit-stat .fit-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #d4a574;
+  margin: 0.25rem 0;
+}
+
+.fit-stat .fit-unit {
+  font-size: 0.8rem;
+  color: #8a8070;
+}
+
+.fit-progress {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.fit-progress .progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: #c0b0a0;
+}
+
+.fit-progress .progress-track {
+  height: 10px;
+  background: rgba(212, 165, 116, 0.15);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.fit-progress .progress-fill.steps-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d4a574, #e8c9a0);
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.fit-progress .progress-info {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #8a8070;
+}
+
+.fit-averages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.average-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(212, 165, 116, 0.05);
+  border-radius: 8px;
+}
+
+.average-stat .avg-label {
+  font-size: 0.7rem;
+  color: #8a8070;
+  text-transform: uppercase;
+}
+
+.average-stat .avg-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f4f1eb;
+}
+
+.average-stat .avg-unit {
+  font-size: 0.7rem;
+  color: #6a6050;
+}
+
+.fit-not-connected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: #8a8070;
+}
+
+.fit-not-connected svg {
+  color: #5a5040;
+  margin-bottom: 0.75rem;
+}
+
+.fit-not-connected p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Steps quick stat card */
+.quick-stat-card.steps-card {
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(212, 165, 116, 0.05) 100%);
+  border-color: rgba(212, 165, 116, 0.3);
+}
+
+.quick-stat-card.steps-card .stat-icon {
+  background: rgba(212, 165, 116, 0.2);
+  color: #d4a574;
+}
+
+@media (max-width: 768px) {
+  .fit-stat-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .fit-averages {
+    grid-template-columns: 1fr;
+  }
+  
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Comparison Section Styles */
+.fit-comparison-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+.fit-comparison-section h5 {
+  margin: 0 0 1rem 0;
+  color: #d4a574;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.comparison-card {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.comparison-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f4f1eb;
+}
+
+.comparison-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.comparison-badge.up {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.comparison-badge.down {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.comparison-badge.same {
+  background: rgba(212, 165, 116, 0.2);
+  color: #d4a574;
+}
+
+.comparison-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.comparison-item {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.comparison-item.current {
+  background: rgba(212, 165, 116, 0.1);
+}
+
+.comparison-item.previous {
+  background: rgba(100, 100, 100, 0.1);
+}
+
+.period-label {
+  display: block;
+  font-size: 0.65rem;
+  color: #8a8070;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.period-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f4f1eb;
+}
+
+.period-avg {
+  display: block;
+  font-size: 0.7rem;
+  color: #6a6050;
+  margin-top: 0.15rem;
+}
+
+.comparison-vs {
+  color: #5a5040;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.comparison-diff {
+  text-align: center;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(212, 165, 116, 0.15);
+}
+
+.diff-positive {
+  color: #4ade80;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.diff-negative {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.diff-neutral {
+  color: #8a8070;
+  font-size: 0.8rem;
+  font-weight: 500;
+}

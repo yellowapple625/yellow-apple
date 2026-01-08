@@ -1,0 +1,1462 @@
+/* ===== Daily Tracker Summary Cards ===== */
+
+.tracker-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.summary-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+  min-height: 180px;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent);
+}
+
+.summary-card.water-summary:hover {
+  border-color: #3b82f6;
+}
+
+.summary-card.food-summary:hover {
+  border-color: #f59e0b;
+}
+
+.summary-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.summary-icon.water {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+  color: #3b82f6;
+}
+
+.summary-icon.food {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1));
+  color: #f59e0b;
+}
+
+.summary-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  overflow: visible;
+}
+
+.summary-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.summary-progress-ring {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.summary-progress-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.summary-progress-ring circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.summary-progress-ring circle.bg {
+  stroke: var(--bg-primary);
+}
+
+.summary-progress-ring circle.progress.water {
+  stroke: #3b82f6;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.summary-progress-ring circle.progress.food {
+  stroke: #f59e0b;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.ring-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.ring-text .ring-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ring-text .ring-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.summary-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.summary-ml {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.summary-target {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.summary-badge.complete {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.summary-action {
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.summary-card:hover .summary-action {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+/* Macro Mini Bars */
+.macro-mini-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 180px;
+}
+
+.mini-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+}
+
+.mini-bar > span:first-child {
+  width: 16px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.mini-bar > span:last-child {
+  width: 36px;
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+.mini-bar .bar-bg {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-primary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.mini-bar .bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.mini-bar .bar-fill.protein {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.mini-bar .bar-fill.carbs {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
+
+.mini-bar .bar-fill.fat {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+/* ===== Detail View ===== */
+.detail-view {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: var(--bg-card);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ===== Food Tracker Container ===== */
+.food-tracker-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .food-tracker-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.food-main-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid var(--border);
+  overflow: visible;
+}
+
+.calorie-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.calorie-ring {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.calorie-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.calorie-ring circle {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+}
+
+.calorie-ring .ring-bg {
+  stroke: var(--bg-primary);
+}
+
+.calorie-ring .ring-progress {
+  stroke: url(#calorieGradient);
+  stroke: #f59e0b;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ring-center svg {
+  color: #f59e0b;
+}
+
+.ring-center .cal-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ring-center .cal-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.calorie-remaining {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Macro Bars */
+.macro-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.macro-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.macro-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.macro-info svg {
+  flex-shrink: 0;
+}
+
+.macro-info .protein-icon { color: #ef4444; }
+.macro-info .carbs-icon { color: #8b5cf6; }
+.macro-info .fat-icon { color: #f59e0b; }
+
+.macro-info span:first-of-type {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.macro-values {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.macro-progress-bar {
+  height: 10px;
+  background: var(--bg-primary);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.macro-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.macro-fill.protein {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.macro-fill.carbs {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+}
+
+.macro-fill.fat {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+/* Food Controls */
+.food-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Food Side Panel */
+.food-side {
+  display: contents;
+}
+
+.food-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+.food-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.food-card h3 svg {
+  color: var(--accent);
+}
+
+/* Quick Add Form */
+.quick-add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quick-add-form > input {
+  padding: 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.quick-add-form > input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.macro-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.macro-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.macro-input label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.macro-input input {
+  padding: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.macro-input input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.add-food-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-md);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-food-btn:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.add-food-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Goal Inputs */
+.goal-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.goal-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.goal-input label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.goal-input input {
+  padding: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.goal-input input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Food Log */
+.food-log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.food-log-entry {
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.food-log-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.food-name {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.food-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.food-log-macros {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.food-log-macros .cal {
+  font-weight: 600;
+  color: #f59e0b;
+  font-size: 0.8rem;
+}
+
+.food-log-macros .macro {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Empty Log */
+.empty-log {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.empty-log svg {
+  opacity: 0.3;
+  margin-bottom: 12px;
+}
+
+.empty-log p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ===== Micros Summary Card ===== */
+.summary-card.micros-summary:hover {
+  border-color: #a855f7;
+}
+
+.summary-icon.micros {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.1));
+  color: #a855f7;
+}
+
+.summary-progress-ring circle.progress.micros {
+  stroke: #a855f7;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.micro-mini-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.micro-mini-stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: rgba(168, 85, 247, 0.1);
+  border-radius: 12px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.micro-mini-stat.complete {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.micro-mini-stat svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ===== Micros Tracker Container ===== */
+.micros-tracker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Main Micros Card */
+.micros-main-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.micros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.micros-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.micros-title > svg {
+  color: #a855f7;
+  margin-top: 4px;
+}
+
+.micros-title h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+}
+
+.micros-title p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.week-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Micros Overall Stats */
+.micros-overall {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+}
+
+.overall-ring {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.overall-ring svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.overall-ring circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.overall-ring .ring-bg {
+  stroke: var(--bg-secondary);
+}
+
+.overall-ring .ring-progress.micros {
+  stroke: #a855f7;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overall-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.overall-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.overall-stats {
+  flex: 1;
+}
+
+.overall-stat {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.overall-stat svg {
+  color: #22c55e;
+}
+
+.overall-stat > span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.overall-stat .stat-desc {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Micros Grid */
+.micros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.micro-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.micro-item:hover {
+  border-color: var(--border);
+  background: var(--bg-secondary);
+}
+
+.micro-item.complete {
+  background: rgba(34, 197, 94, 0.05);
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.micro-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.micro-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.micro-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.micro-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-secondary);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.micro-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.micro-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.micro-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.micro-controls button {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.micro-controls button:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+
+.micro-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reset Button */
+.reset-micros-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-micros-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255, 215, 0, 0.05);
+}
+
+/* Micros Side Panel */
+.micros-side {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.micros-info-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.micros-info-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--text-primary);
+}
+
+.micros-info-card h3 svg {
+  color: #a855f7;
+}
+
+.info-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.info-content ul {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+.info-content li {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Sources Card */
+.sources-card {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.source-item {
+  padding: 12px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+}
+
+.source-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.source-header span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.source-item p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .micros-tracker-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .micros-side {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tracker-summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .tracker-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+    min-height: auto;
+  }
+  
+  .summary-action {
+    display: none;
+  }
+  
+  .macro-mini-bars {
+    max-width: 100%;
+  }
+  
+  .micros-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .micros-overall {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .micros-side {
+    grid-template-columns: 1fr;
+  }
+  
+  .micros-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== NEW MICRONUTRIENT CARDS ===== */
+
+.micros-grid-new {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1400px) {
+  .micros-grid-new {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .micros-grid-new {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .micros-grid-new {
+    grid-template-columns: 1fr;
+  }
+}
+
+.micro-card-new {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.micro-card-new:hover {
+  border-color: var(--border-light);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.micro-card-new.complete {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(34, 197, 94, 0.02));
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.micro-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.micro-icon-new {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.micro-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.micro-name-new {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.micro-progress-text {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.micro-complete-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(34, 197, 94, 0.2);
+  border-radius: 20px;
+  color: #22c55e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.micro-description {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.micro-benefits {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(251, 191, 36, 0.03));
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+}
+
+.micro-benefits svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.micro-benefits span {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.micro-sources-section {
+  margin-bottom: 10px;
+}
+
+.sources-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.sources-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.source-tag {
+  padding: 5px 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.source-tag:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.micro-progress-section {
+  margin-bottom: 16px;
+}
+
+.micro-progress-bar-new {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.micro-fill-new {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  position: relative;
+}
+
+.micro-fill-new::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.mark-done-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mark-done-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--micro-color, var(--accent));
+  color: var(--micro-color, var(--accent));
+  transform: translateY(-2px);
+}
+
+.mark-done-btn.has-progress {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.05));
+  border-color: rgba(251, 191, 36, 0.3);
+  color: var(--accent);
+}
+
+.mark-done-btn.has-progress:hover {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.1));
+}
+
+.mark-done-btn.completed {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  cursor: default;
+}
+
+.mark-done-btn.completed:hover {
+  transform: none;
+}
+
+/* Tips Card */
+.tips-card h3 svg {
+  color: #ef4444;
+}
+
+.tips-card .info-content ul {
+  padding-left: 18px;
+}
+
+.tips-card .info-content li {
+  position: relative;
+  padding-left: 8px;
+  margin-bottom: 10px;
+}
+
+.tips-card .info-content li::marker {
+  color: var(--accent);
+}
+
+/* Responsive adjustments for new cards */
+@media (max-width: 768px) {
+  .tracker-summary-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-card {
+    padding: 20px;
+    gap: 16px;
+    min-height: 140px;
+  }
+  
+  .summary-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+  }
+  
+  .summary-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .summary-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .summary-progress-ring {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .summary-percent {
+    font-size: 0.85rem;
+  }
+  
+  .modal-content.water-modal,
+  .modal-content.food-modal {
+    padding: 20px;
+    max-height: 90vh;
+  }
+  
+  .food-modal-content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .food-info-section,
+  .food-details-section {
+    padding-right: 0;
+    border-right: none;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .food-details-section {
+    border-bottom: none;
+  }
+  
+  .meal-type-selector {
+    flex-wrap: wrap;
+  }
+  
+  .meal-type-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .micro-card-new {
+    padding: 16px;
+  }
+  
+  .micro-icon-new {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .micro-name-new {
+    font-size: 1rem;
+  }
+  
+  .micro-description {
+    font-size: 0.85rem;
+  }
+  
+  .source-tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  
+  .micros-grid-new {
+    gap: 14px;
+  }
+  
+  .water-quick-add {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .quick-add-btn {
+    flex: 1;
+    min-width: 60px;
+    padding: 10px 12px;
+  }
+}

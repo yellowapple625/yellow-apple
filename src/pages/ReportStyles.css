@@ -351,6 +351,22 @@
   border: 1px solid #3a3530;
 }
 
+/* Overview Layout */
+.overview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 1.75rem;
+}
+
+.overview-main-cards,
+.overview-side-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -1685,6 +1701,15 @@
 
   .analysis-grid {
     grid-template-columns: 1fr;
+  }
+
+  .overview-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-main-cards,
+  .overview-side-cards {
+    gap: 1rem;
   }
   
   .analysis-card {

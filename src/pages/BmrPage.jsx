@@ -43,6 +43,7 @@ export default function BmrPage() {
   // Gym parameters - all manual
   const [gymSets, setGymSets] = useState('');
   const [gymReps, setGymReps] = useState('');
+  const [gymWeight, setGymWeight] = useState(''); // Weight lifted (kg) - dumbbells, barbells
   const [gymRestTime, setGymRestTime] = useState('');
   const [gymIntensity, setGymIntensity] = useState('moderate');
   
@@ -179,6 +180,7 @@ export default function BmrPage() {
     const sets = parseInt(gymSets) || 3;
     const reps = parseInt(gymReps) || 10;
     const rest = parseInt(gymRestTime) || 60;
+    const liftingWeight = parseFloat(gymWeight) || 0; // Weight lifted in kg
     
     setIsCalculating(true);
     setCalculationResult(null);
@@ -197,6 +199,7 @@ export default function BmrPage() {
           sets,
           reps,
           restTime: rest,
+          liftingWeight,
           intensity: gymIntensity,
           weight: userWeight,
           height: userHeight,
@@ -206,29 +209,36 @@ export default function BmrPage() {
       
       const data = await response.json();
       if (data.error) {
-        fallbackGymCalculation(estimatedDuration, sets, reps);
+        fallbackGymCalculation(estimatedDuration, sets, reps, liftingWeight);
       } else {
-        setCalculationResult({ ...data, sets, reps, duration: estimatedDuration });
+        setCalculationResult({ ...data, sets, reps, duration: estimatedDuration, liftingWeight });
       }
     } catch (err) {
-      fallbackGymCalculation(estimatedDuration, sets, reps);
+      fallbackGymCalculation(estimatedDuration, sets, reps, liftingWeight);
     } finally {
       setIsCalculating(false);
     }
   };
 
-  const fallbackGymCalculation = (duration, sets, reps) => {
+  const fallbackGymCalculation = (duration, sets, reps, liftingWeight = 0) => {
+    // Base MET for weight training is ~5.0
+    // Heavier weights increase intensity and calorie burn
     const baseMet = 5.0;
-    const met = baseMet * intensityMultipliers[gymIntensity];
+    // Add bonus for lifting weight: +0.5 MET per 10kg lifted
+    const weightBonus = liftingWeight > 0 ? (liftingWeight / 10) * 0.5 : 0;
+    const met = (baseMet + weightBonus) * intensityMultipliers[gymIntensity];
     const calories = Math.round((met * userWeight * duration) / 60);
     setCalculationResult({
       calories,
       exercise: exerciseName,
       sets,
       reps,
+      liftingWeight,
       duration,
       intensity: gymIntensity,
-      tips: 'Maintain proper form and stay hydrated.',
+      tips: liftingWeight > 0 
+        ? `Great work lifting ${liftingWeight}kg! Maintain proper form and stay hydrated.`
+        : 'Maintain proper form and stay hydrated.',
     });
   };
 
@@ -388,6 +398,7 @@ export default function BmrPage() {
         type: workoutType,
         sets: calculationResult.sets,
         reps: calculationResult.reps,
+        liftingWeight: calculationResult.liftingWeight,
         distance: calculationResult.distance,
         intensity: calculationResult.intensity,
         time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
@@ -406,6 +417,7 @@ export default function BmrPage() {
     setExerciseName('');
     setGymSets('');
     setGymReps('');
+    setGymWeight('');
     setGymRestTime('');
     setCardioDuration('');
     setCardioDistance('');
@@ -781,6 +793,18 @@ export default function BmrPage() {
                         placeholder="10"
                         min="1"
                       />
+                    </div>
+                    <div className="param-input-group">
+                      <label><Dumbbell size={14} /> Weight (kg)</label>
+                      <input
+                        type="number"
+                        value={gymWeight}
+                        onChange={(e) => setGymWeight(e.target.value)}
+                        placeholder="20"
+                        min="0"
+                        step="0.5"
+                      />
+                      <span className="input-hint">Dumbbell/Barbell weight</span>
                     </div>
                     <div className="param-input-group">
                       <label><Timer size={14} /> Rest (seconds)</label>

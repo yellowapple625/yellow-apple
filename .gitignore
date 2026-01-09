@@ -23,6 +23,7 @@ Thumbs.db
 
 # Google tokens (sensitive)
 server/google_tokens.json
+server/credentials.json
 
 # Test files
 coverage/

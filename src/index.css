@@ -7810,6 +7810,13 @@ label, .nav-link, .mode-btn, .analyze-btn, .auth-btn, .connect-btn {
   color: var(--text-muted);
 }
 
+.param-input-group .input-hint {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
 .intensity-section {
   margin-top: 16px;
 }

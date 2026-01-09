@@ -856,9 +856,8 @@ export default function ReportPage() {
                   </div>
                 </div>
 
-                <div className="overview-layout">
-                  <div className="overview-main-cards">
-                    <div className="analysis-card calorie-balance-card">
+                <div className="analysis-grid">
+                  <div className="analysis-card calorie-balance-card">
                     <div className="card-header">
                       <h4><Flame size={18} /> Calorie Balance</h4>
                       <span className={`status-badge ${calorieStatus ? 'on-track' : 'off-track'}`}>
@@ -917,11 +916,11 @@ export default function ReportPage() {
                         </p>
                       )}
                     </div>
-                    </div>
+                  </div>
 
-                    <div className="analysis-card hydration-card">
-                      <div className="card-header">
-                        <h4><Droplets size={18} /> Hydration</h4>
+                  <div className="analysis-card hydration-card">
+                    <div className="card-header">
+                      <h4><Droplets size={18} /> Hydration</h4>
                       <span className={`status-badge ${waterProgress >= 100 ? 'on-track' : waterProgress >= 50 ? 'moderate' : 'off-track'}`}>
                         {waterProgress >= 100 ? 'Complete' : waterProgress >= 50 ? 'In Progress' : 'Low'}
                       </span>
@@ -946,12 +945,12 @@ export default function ReportPage() {
                           <span className="stat-label">remaining</span>
                         </div>
                       </div>
-                      </div>
                     </div>
+                  </div>
 
-                    <div className="analysis-card bmi-card">
-                      <div className="card-header">
-                        <h4><Scale size={18} /> Body Mass Index</h4>
+                  <div className="analysis-card bmi-card">
+                    <div className="card-header">
+                      <h4><Scale size={18} /> Body Mass Index</h4>
                       <span className="status-badge" style={{ background: `${bmiCategory.color}20`, color: bmiCategory.color }}>
                         {bmiCategory.label}
                       </span>
@@ -982,18 +981,17 @@ export default function ReportPage() {
                     </div>
                   </div>
 
-                  <div className="overview-side-cards">
-                    {/* Google Fit Activity Card */}
-                    <div className="analysis-card google-fit-card">
-                      <div className="card-header">
-                        <h4><Footprints size={18} /> Google Fit Activity</h4>
-                        <span className={`status-badge ${googleFitConnected ? 'connected' : 'disconnected'}`}>
-                          {googleFitConnected ? 'Connected' : 'Not Connected'}
-                        </span>
-                      </div>
-                      
-                      {googleFitConnected ? (
-                        <div className="google-fit-stats">
+                  {/* Google Fit Activity Card */}
+                  <div className="analysis-card google-fit-card">
+                    <div className="card-header">
+                      <h4><Footprints size={18} /> Google Fit Activity</h4>
+                      <span className={`status-badge ${googleFitConnected ? 'connected' : 'disconnected'}`}>
+                        {googleFitConnected ? 'Connected' : 'Not Connected'}
+                      </span>
+                    </div>
+                    
+                    {googleFitConnected ? (
+                      <div className="google-fit-stats">
                         <div className="fit-stat-row">
                           <div className="fit-stat">
                             <span className="fit-label">Today</span>
@@ -1125,100 +1123,73 @@ export default function ReportPage() {
                             <span className="avg-unit">steps/day</span>
                           </div>
                         </div>
+                      </div>
+                    ) : (
+                      <div className="fit-not-connected">
+                        <AlertCircle size={32} />
+                        <p>Connect Google Fit on the Activity page to see your step data here</p>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="analysis-card insights-card">
+                    <div className="card-header">
+                      <h4><Award size={18} /> Daily Summary</h4>
+                    </div>
+
+                    <div className="insights-list">
+                      <div className={`insight-item ${calorieStatus ? 'positive' : 'negative'}`}>
+                        <div className="insight-icon">
+                          {calorieStatus ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
                         </div>
-                      ) : (
-                        <div className="fit-not-connected">
-                          <AlertCircle size={32} />
-                          <p>Connect Google Fit on the Activity page to see your step data here</p>
+                        <div className="insight-content">
+                          <span className="insight-title">Calorie Goal</span>
+                          <span className="insight-text">
+                            {calorieStatus ? 'You\'re on track with your calorie goals!' : 'Adjust intake or activity to meet your goal.'}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className={`insight-item ${waterProgress >= 80 ? 'positive' : 'neutral'}`}>
+                        <div className="insight-icon">
+                          {waterProgress >= 80 ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
+                        </div>
+                        <div className="insight-content">
+                          <span className="insight-title">Hydration</span>
+                          <span className="insight-text">
+                            {waterProgress >= 100 ? 'Daily goal reached!' : `${waterTarget - waterConsumed} more glasses to go.`}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className={`insight-item ${workoutCount > 0 ? 'positive' : 'neutral'}`}>
+                        <div className="insight-icon">
+                          {workoutCount > 0 ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
+                        </div>
+                        <div className="insight-content">
+                          <span className="insight-title">Activity</span>
+                          <span className="insight-text">
+                            {workoutCount > 0 ? `${workoutCount} workout(s), ${caloriesBurned} kcal burned` : 'No workouts logged today.'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {googleFitConnected && (
+                        <div className={`insight-item ${googleFitSteps.day >= 10000 ? 'positive' : googleFitSteps.day >= 5000 ? 'neutral' : 'negative'}`}>
+                          <div className="insight-icon">
+                            {googleFitSteps.day >= 10000 ? <CheckCircle2 size={18} /> : <Footprints size={18} />}
+                          </div>
+                          <div className="insight-content">
+                            <span className="insight-title">Steps</span>
+                            <span className="insight-text">
+                              {googleFitSteps.day >= 10000 
+                                ? `Amazing! ${googleFitSteps.day.toLocaleString()} steps today!` 
+                                : `${googleFitSteps.day.toLocaleString()} steps - ${(10000 - googleFitSteps.day).toLocaleString()} more to reach 10k`}
+                            </span>
+                          </div>
                         </div>
                       )}
                     </div>
-
-                    <div className="analysis-card insights-card">
-                      <div className="card-header">
-                        <h4><Award size={18} /> Daily Summary</h4>
-                      </div>
-
-                      <div className="insights-list">
-                        <div className={`insight-item ${calorieStatus ? 'positive' : 'negative'}`}>
-                          <div className="insight-icon">
-                            {calorieStatus ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
-                          </div>
-                          <div className="insight-content">
-                            <span className="insight-title">Calorie Goal</span>
-                            <span className="insight-text">
-                              {calorieStatus ? 'You\'re on track with your calorie goals!' : 'Adjust intake or activity to meet your goal.'}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className={`insight-item ${waterProgress >= 80 ? 'positive' : 'neutral'}`}>
-                          <div className="insight-icon">
-                            {waterProgress >= 80 ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
-                          </div>
-                          <div className="insight-content">
-                            <span className="insight-title">Hydration</span>
-                            <span className="insight-text">
-                              {waterProgress >= 100 ? 'Daily goal reached!' : `${waterTarget - waterConsumed} more glasses to go.`}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className={`insight-item ${workoutCount > 0 ? 'positive' : 'neutral'}`}>
-                          <div className="insight-icon">
-                            {workoutCount > 0 ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
-                          </div>
-                          <div className="insight-content">
-                            <span className="insight-title">Activity</span>
-                            <span className="insight-text">
-                              {workoutCount > 0 ? `${workoutCount} workout(s), ${caloriesBurned} kcal burned` : 'No workouts logged today.'}
-                            </span>
-                          </div>
-                        </div>
-
-                        {googleFitConnected && (
-                          <div className={`insight-item ${googleFitSteps.day >= 10000 ? 'positive' : googleFitSteps.day >= 5000 ? 'neutral' : 'negative'}`}>
-                            <div className="insight-icon">
-                              {googleFitSteps.day >= 10000 ? <CheckCircle2 size={18} /> : <Footprints size={18} />}
-                            </div>
-                            <div className="insight-content">
-                              <span className="insight-title">Steps</span>
-                              <span className="insight-text">
-                                {googleFitSteps.day >= 10000 
-                                  ? `Amazing! ${googleFitSteps.day.toLocaleString()} steps today!` 
-                                  : `${googleFitSteps.day.toLocaleString()} steps - ${(10000 - googleFitSteps.day).toLocaleString()} more to reach 10k`}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="quick-actions-section">
-                  <h3>Quick Actions</h3>
-                  <div className="quick-actions-grid">
-                    <a href="/home/daily-tracker" className="quick-action-card">
-                      <Utensils size={24} />
-                      <span>Log Food</span>
-                      <ChevronRight size={16} />
-                    </a>
-                    <a href="/home/bmr" className="quick-action-card">
-                      <Flame size={24} />
-                      <span>Log Workout</span>
-                      <ChevronRight size={16} />
-                    </a>
-                    <a href="/home/activity" className="quick-action-card">
-                      <Activity size={24} />
-                      <span>View Activity</span>
-                      <ChevronRight size={16} />
-                    </a>
-                    <button className="quick-action-card" onClick={() => setShowCustomGoalModal(true)}>
-                      <Target size={24} />
-                      <span>Add Goal</span>
-                      <ChevronRight size={16} />
-                    </button>
                   </div>
                 </div>
               </>
@@ -1493,6 +1464,31 @@ export default function ReportPage() {
               </div>
             )}
 
+            <div className="quick-actions-section">
+              <h3>Quick Actions</h3>
+              <div className="quick-actions-grid">
+                <a href="/home/daily-tracker" className="quick-action-card">
+                  <Utensils size={24} />
+                  <span>Log Food</span>
+                  <ChevronRight size={16} />
+                </a>
+                <a href="/home/bmr" className="quick-action-card">
+                  <Flame size={24} />
+                  <span>Log Workout</span>
+                  <ChevronRight size={16} />
+                </a>
+                <a href="/home/activity" className="quick-action-card">
+                  <Activity size={24} />
+                  <span>View Activity</span>
+                  <ChevronRight size={16} />
+                </a>
+                <button className="quick-action-card" onClick={() => setShowCustomGoalModal(true)}>
+                  <Target size={24} />
+                  <span>Add Goal</span>
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
           </>
         )}
 
